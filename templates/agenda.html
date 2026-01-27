@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <form method="POST">
+       <input type="text" name="titulo-tarefa" 
+        id="titulo-tarefa" placeholder="Título da tarefa"
+        required>
+        <input type="date" name="data-conclusao" 
+        id="data-conclusao">
+        <button type="submit">Adicionar Tarefa</button>
+    </form>
+    <p>{{ tarefa.titulo }} - {{ tarefa.data_conclusao }}</p>
+{% endblock %}
+
+<!--Métodos HTTP
+GET -> "pega" (recupera) informações do servidor (READ)
+POST -> "envia" (cadastra) informações para o servidor(CREATE)
+UPDATE/PATCH -> "atualiza" informações no servidor (UPDATE)
+DELETE -> "deleta" informações no servidor (DELETE)
+
+CRUD -> CREATE, READ, UPDATE, DELETE
+-->
+
+<!--
+ 2XX -> Sucesso
+ 3XX -> Sucesso, mas redirecionamento
+ 4XX -> Não encontrado (Falha na REQUISIÇÃO)
+ 5XX -> Erro no servidor(Falha na RESPOSTA)
+ --> 
