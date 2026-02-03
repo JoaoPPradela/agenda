@@ -1,29 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="form-card">
+    
+    <h2 class="titulo-card">AGENDA</h2>
 
-<div class="container-principal">
+     <form method="POST">
+         <input type="text" name="titulo-tarefa" 
+        id="titulo-tarefa" placeholder="Título da tarefa"
+         required>
+         <input type="date" name="data-conclusao" 
+         id="data-conclusao">
+        <button type="submit">Adicionar Tarefa</button>
+   </form>
+</div>
 
-    <h1 class="titulo">Agenda</h1>
+<h2>Lista de Tarefas</h2>
+<div class="tarefa-card">
+{% if tarefas %}
 
-    <form method="POST">
-       <input type="text" name="titulo-tarefa" class="input-bonito" 
-              placeholder="Digite a tarefa..." required>
-        
-        <input type="date" name="data-conclusao" class="input-bonito">
-        
-        <button type="submit" class="btn-adicionar">Adicionar Tarefa</button>
-    </form>
+     <ul>
+     {%for tarefa in tarefas%}
+         <li>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }}</li>
+        {% endfor %}
+    </ul>
 
-    {% for item in tarefas %}
-    <div class="card">
-        
-        <div>
-            {{ item.titulo }} <br>
-            <span style="color: #7f9ab3; font-size: 14px;">{{ item.data_conclusao }}</span>
+{% else %}
+
+        <p>Nem uma tarefa cadastrada</p>
+
+{% endif %}
+         <div class="botoes">
+             <button class="button-excluir">Excluir</button>
+             <button class="button-concluir">Concluido</button>
         </div>
-
-    </div>
-    {% endfor %}
-    </div>
-
+</div>
 {% endblock %}

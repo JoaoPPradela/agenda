@@ -1,105 +1,184 @@
-/*FUNDO DA PÁGINA*/
+/* === CONFIGURAÇÕES GERAIS (Fundo Claro) === */
 body {
-    background-color: #f0f2f5;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc; /* Um cinza muito leve, quase branco */
     margin: 0;
-    padding: 0;
-    color: #4a4a4a;
-}
-
-.container-principal {
-    background-color: white;
-    width: 90%;
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #e1e4e8;
-}
-
-/*Titulo*/
-.titulo {
-    text-align: center;
-    color: #5b6b7c;
-    margin-bottom: 25px;
-    font-weight: 600;
-}
-
-/*Campo de data e Texto*/
-.input-bonito {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    background-color: #f9fbfc;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 15px;
-    outline: none;
-    color: #333;
-}
-
-.input-bonito:focus {
-    border-color: #8da2fb;
-    background-color: #fff;
-}
-
-/* Botão de adicionar */
-.btn-adicionar {
-    width: 100%;
-    background-color: #6c8cff;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.btn-adicionar:hover {
-    background-color: #5a75e6;
-}
-
-/*LISTA DE TAREFAS*/
-.card {
-    background: white;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 16px 5px;
+    padding: 20px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #555; /* Texto cinza escuro é mais elegante que preto puro */
+}
+
+h1 {
+    text-align: center;
+    color: #6c757d; /* Cinza médio para o título */
+    font-size: 2.2rem;
+    font-weight: normal; /* Tira o negrito pesado */
+    margin-bottom: 20px;
+}
+
+/* === CARD DO FORMULÁRIO === */
+.form-card {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 20px; /* Cantos bem redondos */
+    /* Sombra muito suave e espalhada */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
+    border: 1px solid #edf2f7; /* Borda quase invisível */
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+/* === INPUTS (Campos de texto) === */
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e2e8f0; /* Borda cinza clara */
+    border-radius: 12px;
+    background-color: #f8f9fa; /* Fundo do input levemente cinza */
+    font-size: 15px;
+    color: #555;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    background-color: #fff;
+    border-color: #a0c4ff; /* Azul pastel ao clicar */
+    box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.2); /* Brilho suave */
+}
+
+/* === BOTÃO PRINCIPAL (Adicionar) === */
+form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #a0c4ff; /* Azul Pastel (Periwinkle) */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(160, 196, 255, 0.4);
+}
+
+form button:hover {
+    background-color: #8cb6ff; /* Escurece um pouquinho */
+    transform: translateY(-2px);
+}
+
+/* === CARD DA TAREFA (Lista) === */
+.tarefa-card {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border-left: 6px solid #a0c4ff; /* Detalhe lateral combinando com o botão */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02); /* Sombra levíssima */
+    border: 1px solid #f0f0f0;
+
+    /* ALINHAMENTO (Manteve a correção) */
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.2s;
 }
 
-.card:hover {
-    background-color: #fafbfc; 
-    border-radius: 6px;
+.tarefa-info {
+    flex-grow: 1;
+    text-align: left;
 }
 
-/*ESTILO DA HOME*/
-.subtitulo {
-    color: #7f8c8d; 
+/* Título da tarefa */
+.tarefa-info span:first-child {
     font-size: 16px;
-    margin-bottom: 35px; 
-    line-height: 1.5;
+    color: #4a5568;
 }
 
-.btn-inicio {
-    display: inline-block; /*Faz o link se comportar como uma caixa*/
-    background-color: #6c8cff;
+/* Data da tarefa */
+.tarefa-data {
+    color: #a0aec0; /* Cinza bem claro */
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* === BOTÕES DE AÇÃO (Pequenos) === */
+.botoes {
+    display: flex;
+    gap: 8px;
+    margin-left: 15px;
+}
+
+.button-concluir, .button-excluir {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px; /* Quadrado arredondado */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    transition: 0.2s;
+}
+
+/* Verde Suave (Mint) */
+.button-concluir {
+    background-color: #087100; /* Ciano pastel */
+    color: #ebebeb; /* Texto escuro para dar contraste no fundo claro */
+}
+.button-concluir:hover { background-color: #0a9400; }
+
+/* Vermelho Suave (Salmon) */
+.button-excluir {
+    background-color: #ff0000; /* Vermelho pastel */
+    color: rgb(255, 255, 255);
+}
+.button-excluir:hover { background-color: #fe3a3a; }
+
+/* === PÁGINA HOME (Se houver) === */
+.home {
+    background: white;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    margin-top: 50px;
+}
+
+.link-agenda {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #a0c4ff;
     color: white;
     text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(108, 140, 255, 0.2);
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
 }
-.btn-inicio:hover {
-    background-color: #5a75e6;
-    transform: translateY(-3px); /* O botão sobe um pouco ao passar o mouse*/
-    box-shadow: 0 6px 15px rgba(108, 140, 255, 0.3);
+.link-agenda:hover {
+    background-color: #8cb6ff;
+}
+
+.titulo-card {
+    margin: 0 0 20px 0; /* Espaço embaixo do título */
+    color: #5b6b7c;     /* Um cinza azulado suave */
+    font-size: 1.5rem;  /* Tamanho médio */
+    font-weight: 600;   /* Levemente negrito */
+    text-align: center; /* Centralizado */
+    width: 100%;        /* Garante que ocupe a largura toda */
 }
