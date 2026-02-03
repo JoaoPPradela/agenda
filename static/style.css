@@ -79,40 +79,6 @@ body {
     border-radius: 6px; /* Arredonda ao passar o mouse */
 }
 
-.card.riscado {
-    opacity: 0.5; /* Fica meio transparente */
-}
-
-.card.riscado .texto-tarefa {
-    text-decoration: line-through;
-    color: #999;
-}
-
-/* === BOTÕES PEQUENOS (Tons Pastéis) === */
-.botao-verde, .botao-vermelho {
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px; /* Quadrado arredondado */
-    cursor: pointer;
-    color: white;
-    font-size: 14px;
-    margin-left: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s;
-}
-
-/* Cores mais "lavadas" e modernas */
-.botao-verde { background-color: #81c784; } /* Verde menta suave */
-.botao-verde:hover { opacity: 0.8; }
-
-.botao-vermelho { background-color: #e57373; } /* Vermelho salmão suave */
-.botao-vermelho:hover { opacity: 0.8; }
-
-
-
 /*EsTILO DA HOME (PÁGINA INICIAL)*/
 
 /* Texto descritivo abaixo do título */
