@@ -1,6 +1,19 @@
-{% extends "base.html" %} <!--Herdar todas as carateristicas de base.hmlt-->
+{% extends "base.html" %}
 
 {% block content %}
-    <p>Seja bem-vindo!</p>
-    <a href="/agenda">Agenda</a>
+
+<div class="container-principal" style="text-align: center; padding-top: 40px; padding-bottom: 40px;">
+    
+    <h1 class="titulo">Bem-vindo!</h1>
+    
+    <p class="subtitulo">
+        Organize seu dia de forma leve e prática.
+    </p>
+
+    <a href="/agenda" class="btn-inicio">
+        Ir para minha Agenda ➜
+    </a>
+
+</div>
+
 {% endblock %}
