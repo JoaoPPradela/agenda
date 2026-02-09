@@ -1,6 +1,8 @@
 
 from sqlite3 import Connection, connect, Cursor
-from typing import Any
+import traceback
+from types import TracebackType
+from typing import Any, Optional, Self, Type
 
 class Database:
     def __init__(self, db_name: str) -> None :
@@ -28,11 +30,21 @@ class Database:
     # Métodos para o gerenciamento de contexto
 
     #Método de entrada do contexto 
-    def __enter__(self):
+    def __enter__(self) -> Self:
         return self
 
     # Método de saída do contexto 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type: Optional[type[BaseException]],
+                 exc_value: Optional[BaseException],
+                 tb:Optional[TracebackType]) -> None:
+        if exc_type is not None:
+            print(f"Ocorreu um erro: {exc_value}")
+            print (f"Tipo do erro: {exc_type.__name__}")
+            print(f'mensagem de erro: {exc_value}')
+            print(f"Traceback completo:")
+            traceback.print_tb(tb)
+
+
         self.close()
 
 
