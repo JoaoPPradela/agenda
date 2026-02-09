@@ -27,6 +27,20 @@ def delete(idTarefa):
     # tarefa=tarefas)
     return redirect(url_for('agenda'))
 
+@app.route('/update/<int:idTarefa>', methods=['GET', 'POST']) 
+def update(idTarefa):
+    tarefas = None
+
+    if request.method == 'POST':
+        titulo_tarefa = request.form['titulo-tarefa']
+        data_conclusao = request.form['data-conclusao']
+        tarefa = Tarefa(titulo_tarefa, data_conclusao, idTarefa)
+        tarefa.atualizar_tarefas()
+
+    tarefas = Tarefa.obter_tarefas()
+    tarefa_selecionada = Tarefa.id(idTarefa)
+    return render_template('agenda.html', titulo=f'Editando a tarefa ID: {idTarefa}',tarefa_selecionada=tarefa_selecionada, tarefas=tarefas )
+
 @app.route('/ola')
 def ola_mundo():
     return "Olá, Mundo!"

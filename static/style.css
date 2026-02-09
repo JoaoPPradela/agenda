@@ -1,20 +1,19 @@
 /* === CONFIGURAÇÕES GERAIS (Fundo Claro) === */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f9fc; /* Um cinza muito leve, quase branco */
+    background-color: #f7f9fc;
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #555; /* Texto cinza escuro é mais elegante que preto puro */
+    color: #555;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
-    color: #6c757d; /* Cinza médio para o título */
-    font-size: 2.2rem;
-    font-weight: normal; /* Tira o negrito pesado */
+    color: #6c757d;
+    font-weight: normal;
     margin-bottom: 20px;
 }
 
@@ -24,24 +23,21 @@ h1 {
     width: 100%;
     max-width: 450px;
     padding: 30px;
-    border-radius: 20px; /* Cantos bem redondos */
-    /* Sombra muito suave e espalhada */
+    border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
-    border: 1px solid #edf2f7; /* Borda quase invisível */
-    
+    border: 1px solid #edf2f7;
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-bottom: 40px;
 }
 
-/* === INPUTS (Campos de texto) === */
 input {
     width: 100%;
     padding: 14px;
-    border: 1px solid #e2e8f0; /* Borda cinza clara */
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
-    background-color: #f8f9fa; /* Fundo do input levemente cinza */
+    background-color: #f8f9fa;
     font-size: 15px;
     color: #555;
     box-sizing: border-box;
@@ -51,15 +47,14 @@ input {
 
 input:focus {
     background-color: #fff;
-    border-color: #a0c4ff; /* Azul pastel ao clicar */
-    box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.2); /* Brilho suave */
+    border-color: #a0c4ff;
+    box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.2);
 }
 
-/* === BOTÃO PRINCIPAL (Adicionar) === */
 form button {
     width: 100%;
     padding: 14px;
-    background-color: #a0c4ff; /* Azul Pastel (Periwinkle) */
+    background-color: #a0c4ff;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -67,118 +62,56 @@ form button {
     border-radius: 12px;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(160, 196, 255, 0.4);
 }
 
-form button:hover {
-    background-color: #8cb6ff; /* Escurece um pouquinho */
-    transform: translateY(-2px);
-}
-
-/* === CARD DA TAREFA (Lista) === */
+/* === LISTA DE TAREFAS === */
 .tarefa-card {
     background: white;
     width: 100%;
     max-width: 450px;
-    padding: 15px 25px;
-    margin-bottom: 15px;
+    padding: 20px;
     border-radius: 15px;
-    border-left: 6px solid #a0c4ff; /* Detalhe lateral combinando com o botão */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02); /* Sombra levíssima */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     border: 1px solid #f0f0f0;
+}
 
-    /* ALINHAMENTO (Manteve a correção) */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f8f9fa;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.tarefa-info {
-    flex-grow: 1;
-    text-align: left;
-}
+li:last-child { border-bottom: none; }
 
-/* Título da tarefa */
-.tarefa-info span:first-child {
-    font-size: 16px;
-    color: #4a5568;
-}
-
-/* Data da tarefa */
-.tarefa-data {
-    color: #a0aec0; /* Cinza bem claro */
+/* === NOVOS BOTÕES BÁSICOS (Editar e Apagar) === */
+.btn-editar, .btn-apagar {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
     font-size: 13px;
-    margin-top: 5px;
-    display: block;
-}
-
-/* === BOTÕES DE AÇÃO (Pequenos) === */
-.botoes {
-    display: flex;
-    gap: 8px;
-    margin-left: 15px;
-}
-
-.button-concluir, .button-excluir {
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 10px; /* Quadrado arredondado */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: white;
+    font-weight: 500;
+    margin-left: 5px;
     transition: 0.2s;
 }
 
-/* Verde Suave (Mint) */
-.button-concluir {
-    background-color: #087100; /* Ciano pastel */
-    color: #ebebeb; /* Texto escuro para dar contraste no fundo claro */
+/* Editar: Azul claro */
+.btn-editar {
+    background-color: #e3f2fd;
+    color: #1976d2;
 }
-.button-concluir:hover { background-color: #0a9400; }
+.btn-editar:hover { background-color: #bbdefb; }
 
-/* Vermelho Suave (Salmon) */
-.button-excluir {
-    background-color: #ff0000; /* Vermelho pastel */
-    color: rgb(255, 255, 255);
+/* Apagar: Vermelho claro */
+.btn-apagar {
+    background-color: #ffebee;
+    color: #c62828;
 }
-.button-excluir:hover { background-color: #fe3a3a; }
-
-/* === PÁGINA HOME (Se houver) === */
-.home {
-    background: white;
-    max-width: 400px;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    margin-top: 50px;
-}
-
-.link-agenda {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background-color: #a0c4ff;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.link-agenda:hover {
-    background-color: #8cb6ff;
-}
-
-.titulo-card {
-    margin: 0 0 20px 0; /* Espaço embaixo do título */
-    color: #5b6b7c;     /* Um cinza azulado suave */
-    font-size: 1.5rem;  /* Tamanho médio */
-    font-weight: 600;   /* Levemente negrito */
-    text-align: center; /* Centralizado */
-    width: 100%;        /* Garante que ocupe a largura toda */
-}
+.btn-apagar:hover { background-color: #ffcdd2; }
