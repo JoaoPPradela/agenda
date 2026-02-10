@@ -5,24 +5,23 @@ from dotenv import load_dotenv
 import traceback
 import os
 
-load_dotenv()
-DB_PATH = os.getenv("DB_PATH", "./data/tarefas.sqlite3")
+load_dotenv() # Procura um arquivo .env com variáveis 
+DB_PATH = os.getenv('DATABASE', './data/tarefas.sqlite3')
 
 def init_db(db_name: str = DB_PATH):
     with connect(db_name) as conn:
         conn.execute("""
-        CREATE TABLE IF NOT EXISTS tarefas
-            (id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS tarefas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             titulo_tarefa TEXT NOT NULL,
-            data_conclusao TEXT);
-            """)
-
-
+            data_conclusao TEXT      
+        );
+        """)
 
 class Database:
-    """Classe para gerenciar a conexão com o banco de dados SQLite e executar operações SQL.
     """
-
+        Classe que regencia conexões e operações com o banco de dados SQLitre. Utiliza o protocolo de gerenciamento de contxtos para garantir qua a conexão seja encerrada corretamente
+    """
     def __init__(self, db_name: str = DB_PATH) -> None:
         self.connection: Connection = connect(db_name)
         self.cursor: Cursor = self.connection.cursor()
@@ -67,18 +66,3 @@ class Database:
 
         self.close()
 
-
-# Área de Testes
-# try:
-#     db = Database('./data/tarefas.sqlite3')
-#     db.executar('''
-#     CREATE TABLE IF NOT EXISTS tarefas (
-#         id INTEGER PRIMARY KEY AUTOINCREMENT,
-#         titulo_tarefa TEXT NOT NULL,
-#         data_conclusao TEXT);
-#     ''')
-#     db.executar(" INSERT INTO tarefas (titulo_tarefa, data_conclusao) VALUES (?, ?);", ("Estudar Python", "2026-01-29"))
-# except Exception as e:
-#     print(f"Erro ao criar tabela: {e}")
-# finally:
-#     db.close()

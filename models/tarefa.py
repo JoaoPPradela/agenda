@@ -3,6 +3,9 @@ from typing import Optional, Self, Any
 from models.database import Database
 
 class Tarefa:
+    """
+        Classe Para representar tarefa, com metodos para salvar, obter, excluir e  atualizar tarefas com um banco de dados usando a classe Database.
+    """
     def __init__(self: Self, titulo_tarefa: Optional[str], data_conclusao: Optional[str] = None, id_tarefa:Optional[int] = None,)-> None:
         self.titulo_tarefa: Optional[str] = titulo_tarefa
         self.data_conclusao: Optional[str]  = data_conclusao
@@ -10,7 +13,7 @@ class Tarefa:
 
     @classmethod
     def id(cls, id: int) -> Self:
-        with Database('./data/tarefas.sqlite3') as db:
+        with Database() as db:
             query: str = 'SELECT titulo_tarefa, data_conclusao FROM tarefas WHERE id = ?;'
             params: tuple = (id,)
             resultado = db.buscar_tudo(query, params)
@@ -22,28 +25,28 @@ class Tarefa:
         return cls(id_tarefa=id, titulo_tarefa=titulo, data_conclusao=data)
         
     def salvar_tarefa(self: Self)-> None:
-        with Database('./data/tarefas.sqlite3') as db:
+        with Database() as db:
             query: str = " INSERT INTO tarefas (titulo_tarefa, data_conclusao) VALUES (?, ?);"
             params: tuple = (self.titulo_tarefa, self.data_conclusao)
             db.executar(query, params)
 
     @classmethod
     def obter_tarefas(cls) -> list[Self]:
-        with Database('./data/tarefas.sqlite3') as db:
+        with Database() as db:
             query: str = 'SELECT titulo_tarefa, data_conclusao, id FROM tarefas;'
             resultados: list[Any] = db.buscar_tudo(query)
             tarefas: list[Any] = [cls(titulo, data, id) for titulo, data, id in resultados]
             return tarefas
     
     def excluir_tarefa(self) -> Cursor:
-        with Database('./data/tarefas.sqlite3') as db:
+        with Database() as db:
             query: str = 'DELETE FROM tarefas WHERE id = ?;'
             params: tuple = (self.id_tarefa,)
             resultado: Cursor = db.executar(query, params)
             return resultado
     
     def atualizar_tarefas(self) -> Cursor:
-           with Database('./data/tarefas.sqlite3') as db:
+           with Database() as db:
             query: str = 'UPDATE tarefas SET titulo_tarefa = ?, data_conclusao = ? WHERE id = ?;'
             params: tuple = (self.titulo_tarefa, self.data_conclusao, self.id_tarefa)
             resultado: Cursor = db.executar(query, params)
