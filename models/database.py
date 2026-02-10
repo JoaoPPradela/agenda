@@ -1,9 +1,28 @@
 from sqlite3 import Connection, connect, Cursor
 from typing import Any, Optional, Self, Type
 from types import TracebackType
+from dotenv import load_dotenv
 import traceback
+import os
+
+load_dotenv()
+DB_PATH = os.getenv("DB_PATH", "./data/tarefas.sqlite3")
+
+def init_db(db_name: str = DB_PATH):
+    with connect(db_name) as conn:
+        conn.execute("""
+        CREATE TABLE IF NOT EXISTS tarefas
+            (id INTEGER PRIMARY KEY AUTOINCREMENT,
+            titulo_tarefa TEXT NOT NULL,
+            data_conclusao TEXT);
+            """)
+
+
 
 class Database:
+    """Classe para gerenciar a conexão com o banco de dados SQLite e executar operações SQL.
+    """
+
     def __init__(self, db_name: str) -> None:
         self.connection: Connection = connect(db_name)
         self.cursor: Cursor = self.connection.cursor()
