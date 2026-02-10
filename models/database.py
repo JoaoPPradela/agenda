@@ -23,7 +23,7 @@ class Database:
     """Classe para gerenciar a conexão com o banco de dados SQLite e executar operações SQL.
     """
 
-    def __init__(self, db_name: str) -> None:
+    def __init__(self, db_name: str = DB_PATH) -> None:
         self.connection: Connection = connect(db_name)
         self.cursor: Cursor = self.connection.cursor()
         self.executar("""
