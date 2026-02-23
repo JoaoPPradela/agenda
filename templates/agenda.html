@@ -1,45 +1,54 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="form-card">
-    <form method="POST">
-        <input type="text" name="titulo-tarefa" 
-        id="titulo-tarefa" placeholder="Título da tarefa" 
-        required value="{{ tarefa_selecionada.titulo_tarefa if tarefa_selecionada else '' }}">
-        <input type="date" name="data-conclusao" 
-        id="data-conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
 
-        <button type="submit">Salvar</button>
+<div class="container-principal">
 
-        {% if tarefa_selecionada %}
-            <a href="{{ url_for('agenda') }}" class="btn-cancel">Cancelar</a>
+    <div class="form-card">
+        <form method="POST">
+            <input type="text" name="titulo-tarefa" 
+                id="titulo-tarefa" placeholder="Título da tarefa" 
+                required value="{{ tarefa_selecionada.titulo_tarefa if tarefa_selecionada else '' }}">
+            
+            <input type="date" name="data-conclusao" 
+                id="data-conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-save">Salvar</button>
+
+                {% if tarefa_selecionada %}
+                    <a href="{{ url_for('agenda') }}" class="btn-cancel">Cancelar</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <h2>Lista de Tarefas</h2>
+
+    <div class="tarefa-card">
+        {% if tarefas %}
+            <ul>
+                {% for tarefa in tarefas %}
+                    <li class="{% if tarefa.concluida == 1 %}tarefa-finalizada{% endif %}">
+                        <span>
+                            {{ tarefa.titulo_tarefa }} | {{ tarefa.data_conclusao }}
+                        </span>
+
+                        <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn-update">Editar</a>
+                        <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn-delete">Apagar</a>
+
+                        {% if not tarefa.concluida %}
+                        <a href="{{ url_for('concluir', idTarefa=tarefa.id_tarefa) }}" class="btn-concluir">Concluir</a>
+                        {% endif %}
+
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="espaco-de-tarefas">
+                <p>Nenhuma tarefa cadastrada</p>
+            </div>
         {% endif %}
-    </form>
+    </div>
+
 </div>
-
-<h2>Lista de Tarefas</h2>
-
-{% if tarefas %}
-    {% for tarefa in tarefas %}
-    <div class="tarefa-card">
-        <div class="tarefa-info">
-            <span>{{ tarefa.titulo_tarefa }}</span>
-            <span class="tarefa-data">{{ tarefa.data_conclusao }}</span>
-        </div>
-
-        <div class="botoes">
-            <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="button-concluir" style="text-decoration: none;">
-                ✎
-            </a>
-            <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="button-excluir" style="text-decoration: none;">
-                ✕
-            </a>
-        </div>
-    </div>
-    {% endfor %}
-{% else %}
-    <div class="tarefa-card">
-        <p>Nenhuma tarefa cadastrada</p>
-    </div>
-{% endif %}
-
 {% endblock %}

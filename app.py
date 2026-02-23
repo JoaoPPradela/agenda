@@ -1,8 +1,9 @@
-
 from flask import Flask, redirect, render_template, request, url_for
-from models.tarefa import Tarefa
 from models.database import init_db
+from models.tarefa import Tarefa
+
 app = Flask(__name__)
+
 init_db()
 
 @app.route('/')
@@ -44,7 +45,12 @@ def update(idTarefa):
     tarefa_selecionada = Tarefa.id(idTarefa)
     return render_template('agenda.html', titulo=f'Editando a tarefa ID: {idTarefa}',tarefa_selecionada=tarefa_selecionada, tarefas=tarefas )
 
+@app.route('/concluir/<int:idTarefa>', methods=['GET', 'POST'])
+def concluir(idTarefa):
+    tarefa = Tarefa.id(idTarefa)
+    tarefa.concluir_tarefa()
+    return redirect(url_for('agenda'))
+
 @app.route('/ola')
 def ola_mundo():
     return "Olá, Mundo!"
-
