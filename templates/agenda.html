@@ -28,18 +28,17 @@
         {% if tarefas %}
             <ul>
                 {% for tarefa in tarefas %}
-                    <li class="{% if tarefa.concluida == 1 %}tarefa-finalizada{% endif %}">
-                        <span>
-                            {{ tarefa.titulo_tarefa }} | {{ tarefa.data_conclusao }}
-                        </span>
-
-                        <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn-update">Editar</a>
-                        <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn-delete">Apagar</a>
-
-                        {% if not tarefa.concluida %}
-                        <a href="{{ url_for('concluir', idTarefa=tarefa.id_tarefa) }}" class="btn-concluir">Concluir</a>
-                        {% endif %}
-
+                   <li class="{% if tarefa.concluida == 1 %}tarefa-finalizada{% endif %}">
+                        <span>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }}</span>
+                        <div class="tarefa-actions"> <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn-update">Editar</a>
+        
+                            {% if tarefa.concluida == 1 %}
+                                <a href="{{ url_for('reabrir', idTarefa=tarefa.id_tarefa) }}" class="btn-reabrir">Reabrir</a>
+                            {% else %}
+                                <a href="{{ url_for('concluir', idTarefa=tarefa.id_tarefa) }}" class="btn-concluir">Concluir</a>
+                                <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn-delete">Apagar</a>
+                            {% endif %}
+                        </div>
                     </li>
                 {% endfor %}
             </ul>

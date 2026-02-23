@@ -51,6 +51,12 @@ def concluir(idTarefa):
     tarefa.concluir_tarefa()
     return redirect(url_for('agenda'))
 
+@app.route('/reabrir/<int:idTarefa>', methods=['GET', 'POST'])
+def reabrir(idTarefa):
+    tarefa = Tarefa.id(idTarefa)
+    tarefa.reabrir_tarefa()
+    return redirect(url_for('agenda'))
+
 @app.route('/ola')
 def ola_mundo():
     return "Olá, Mundo!"
