@@ -42,15 +42,9 @@ input {
     color: #555;
     box-sizing: border-box;
     outline: none;
-    transition: 0.3s;
 }
 
-input:focus {
-    background-color: #fff;
-    border-color: #a0c4ff;
-    box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.2);
-}
-
+/* Botão Salvar Principal */
 form button {
     width: 100%;
     padding: 14px;
@@ -61,10 +55,34 @@ form button {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: 0.3s;
+    gap: 10px;
 }
 
-/* === LISTA DE TAREFAS === */
+form button:hover {
+    background-color: #8db5f2;
+}
+
+/* Botão Cancelar do Formulário */
+.btn-cancel {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #e2e8f0;
+    color: #475569;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.btn-cancel:hover {
+    background-color: #cbd5e1;
+}
+
+/* LISTA DE TAREFAS */
 .tarefa-card {
     background: white;
     width: 100%;
@@ -91,37 +109,60 @@ li {
 
 li:last-child { border-bottom: none; }
 
-/* === NOVOS BOTÕES BÁSICOS (Editar e Apagar) === */
-.btn-editar, .btn-apagar {
+/*BOTÕES DE AÇÃO NA LISTA  */
+.btn-update, .btn-delete, .btn-concluir, .btn-reabrir {
     text-decoration: none;
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 13px;
     font-weight: 500;
     margin-left: 5px;
-    transition: 0.2s;
+    display: inline-block;
+    cursor: pointer;
 }
 
-/* Editar: Azul claro */
-.btn-editar {
+/* Editar / Update */
+.btn-update {
     background-color: #e3f2fd;
     color: #1976d2;
 }
-.btn-editar:hover { background-color: #bbdefb; }
+.btn-update:hover {
+    background-color: #bbdefb;
+}
 
-/* Apagar: Vermelho claro */
-.btn-apagar {
+/* Apagar / Delete */
+.btn-delete {
     background-color: #ffebee;
     color: #c62828;
 }
-.btn-apagar:hover { background-color: #ffcdd2; }
-
-/* RNF01 e RNF06: Estilo visual e acessibilidade */
-.tarefa-concluida .titulo {
-    text-decoration: line-through;
-    color: #7f8c8d; /* Cinza com contraste acessível */
+.btn-delete:hover {
+    background-color: #ffcdd2;
 }
-.tarefa-concluida {
+
+/* Concluir */
+.btn-concluir {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+.btn-concluir:hover {
+    background-color: #c8e6c9;
+}
+
+/* Reabrir */
+.btn-reabrir {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+.btn-reabrir:hover {
+    background-color: #ffe0b2;
+}
+
+/* Estados de tarefa finalizada */
+.tarefa-finalizada span {
+    text-decoration: line-through;
+    color: #7f8c8d;
+}
+
+.tarefa-finalizada {
     background-color: #f9f9f9;
-    border-left: 5px solid #7f8c8d;
 }
