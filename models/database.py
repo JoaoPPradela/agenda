@@ -17,6 +17,7 @@ def init_db(db_name: str = DB_PATH):
 
     if not os.path.exists(data_dir):
         os.makedirs(data_dir, exist_ok=True)
+        
     with connect(db_name) as conn:
         conn.execute("""
         CREATE TABLE IF NOT EXISTS tarefas (
@@ -38,13 +39,13 @@ class Database:
     def __init__(self, db_name: str = DB_PATH) -> None:
         self.connection: Connection = connect(db_name)
         self.cursor: Cursor = self.connection.cursor()
-        self.executar("""
-        CREATE TABLE IF NOT EXISTS tarefas (
-         id INTEGER PRIMARY KEY AUTOINCREMENT,
-         titulo_tarefa TEXT NOT NULL,
-         data_conclusao TEXT,
-         concluida INTEGER DEFAULT 0);
-        """)
+        # self.executar("""
+        # CREATE TABLE IF NOT EXISTS tarefas (
+        #  id INTEGER PRIMARY KEY AUTOINCREMENT,
+        #  titulo_tarefa TEXT NOT NULL,
+        #  data_conclusao TEXT,
+        #  concluida INTEGER DEFAULT 0);
+        # """)
 
     # Métodos para execução de comandos SQL e consultas
     def executar(self, query: str, params: tuple = ()) -> Cursor:
