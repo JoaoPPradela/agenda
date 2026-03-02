@@ -8,14 +8,8 @@ app = Flask(__name__)
 # Cria a tabela no banco de dados assim que o servidor inicia
 init_db()
 
-#Rotas de Navegação Simples e Teste
-@app.route('/')
-def home():
-    """ Renderiza a página inicial """
-    return render_template('home.html', titulo='Home')
-
-# Rota Principal da Agenda (Listar e Criar) 
-@app.route('/agenda', methods=['GET','POST'])
+#Rotas de Navegação Simples e Teste 
+@app.route('/', methods=['GET','POST'])
 def agenda():
     tarefas = None
 
